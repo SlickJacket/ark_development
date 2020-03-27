@@ -18,6 +18,9 @@ function App() {
           <Route exact path="/admin/videos" component={Inbox}/>
           <Route exact path="/admin/gallery" component={Inbox}/>
           <Route exact path="/admin/resources" component={Resources}/>
+          <Route exact path="/admin/metal-prices" component={Resources}/>
+          <Route exact path="/admin/stones" component={Resources}/>
+          <Route exact path="/admin/notes" component={Resources}/>
           <Route exact path="/admin/analytics" component={Inbox}/>
           <Route exact path="/admin/settings" component={Inbox}/>
         </Switch>
