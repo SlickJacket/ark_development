@@ -25,6 +25,12 @@ export default createMuiTheme({
         fontWeight: "600",
         fontSize: "1.2rem",
         textTransform: "none"
+      },
+      estimate: {
+        fontFamily: "Faustina",
+        fontWeight: "600",
+        fontSize: "1rem",
+        color: "white"
       }
   }
 });
