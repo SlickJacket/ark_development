@@ -1,5 +1,6 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -12,8 +13,16 @@ import MenuItem from "@material-ui/core/MenuItem";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
+import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import InboxIcon from "@material-ui/icons/MoveToInbox";
+import MailIcon from "@material-ui/icons/Mail";
+import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
+import Drawer from "@material-ui/core/Drawer";
 
 import logo from "../../assets/COA_Logo.png";
 
@@ -30,7 +39,18 @@ function ElevationScroll(props) {
   });
 }
 
+const permDrawerWidth = 300;
+
 const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex"
+  },
+  appBar: {
+    height: "100px",
+    width: `calc(100% - ${permDrawerWidth}px)`,
+    marginLeft: permDrawerWidth,
+    justifyContent: "center"
+  },
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: "3em",
@@ -43,6 +63,9 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     height: "7em",
+    [theme.breakpoints.up("lg")]: {
+      display: "none"
+    },
     [theme.breakpoints.down("md")]: {
       height: "6em",
       marginLeft: "auto"
@@ -64,7 +87,11 @@ const useStyles = makeStyles(theme => ({
     width: "15%",
     marginLeft: "50px",
     textTransform: "none",
-    borderRadius: 0
+    borderRadius: 0,
+    [theme.breakpoints.down("md")]: {
+      margin: "auto",
+      width: "130px"
+    }
   },
   menu: {
     backgroundColor: theme.palette.primary.main,
@@ -84,6 +111,42 @@ const useStyles = makeStyles(theme => ({
   drawerIcon: {
     height: "50px",
     width: "50px"
+  },
+  drawer: {
+    backgroundColor: theme.palette.primary.main,
+    width: "12rem"
+  },
+  drawerList: {
+    marginTop: "2rem"
+  },
+  drawerLogo: {
+    height: "7em"
+  },
+  drawerItem: {},
+  drawerLogoutbutton: {},
+  drawerItemText: {
+    ...theme.typography.tab,
+    color: "white",
+    textAlign: "center"
+  },
+  permDrawer: {
+    width: permDrawerWidth,
+    flexShrink: 0
+  },
+  permDrawerLogo: {
+    height: "10em",
+    paddingTop: "none"
+  },
+  permDrawerPaper: {
+    width: permDrawerWidth,
+    backgroundColor: theme.palette.primary.main
+  },
+  // necessary for content to be below app bar
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.default,
+    padding: theme.spacing(3)
   }
 }));
 
@@ -294,8 +357,123 @@ export default function Header(props) {
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}
       >
-        Example Drawer
+        <Button
+          component={Link}
+          to="/admin/inbox"
+          disableRipple
+          onClick={() => setValue(0)}
+        >
+          <img alt="Company Logo" src={logo} className={classes.drawerLogo} />
+        </Button>
+        <Divider/>
+        <Button
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+        >
+          Metal Cost Calculator
+        </Button>
+        <Divider />
+        <List className={classes.drawerList} disablePadding>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/inbox"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Inbox
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/profile"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Profile
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/videos"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Videos
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/gallery"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Gallery
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/resources"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Resources
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/analytics"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Analytics
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/settings"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Settings
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={[classes.drawerItem, classes.drawerLogoutbutton]}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/login"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Logout
+            </ListItemText>
+          </ListItem>
+        </List>
       </SwipeableDrawer>
       <IconButton
         onClick={() => setOpenDrawer(!openDrawer)}
@@ -307,9 +485,9 @@ export default function Header(props) {
     </Fragment>
   );
   return (
-    <Fragment>
+    <div className={classes.root}>
       <ElevationScroll>
-        <AppBar position="fixed" color="secondary">
+        <AppBar position="fixed" className={classes.appBar} color="secondary">
           <ToolBar>
             {matches ? drawer : null}
             <Button
@@ -324,7 +502,124 @@ export default function Header(props) {
           </ToolBar>
         </AppBar>
       </ElevationScroll>
+      <Drawer
+        className={classes.permDrawer}
+        variant="permanent"
+        classes={{
+          paper: classes.permDrawerPaper
+        }}
+        anchor="left"
+      >
+        <div className={classes.toolbar} />
+        <Button
+          component={Link}
+          to="/admin/inbox"
+          disableRipple
+          onClick={() => setValue(0)}
+        >
+          <img alt="Company Logo" src={logo} className={classes.permDrawerLogo} />
+        </Button>
+        <Divider />
+        <List className={classes.drawerList} disablePadding>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/inbox"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              <InboxIcon /> Inbox
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/profile"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Profile
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/videos"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Videos
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/gallery"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Gallery
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/resources"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Resources
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/analytics"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Analytics
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItem}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/settings"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Settings
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={[classes.drawerItem, classes.drawerLogoutbutton]}
+            divider
+            button
+            onClick={() => setOpenDrawer(false)}
+            component={Link}
+            to="/admin/login"
+          >
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              Logout
+            </ListItemText>
+          </ListItem>
+        </List>
+      </Drawer>
       <div className={classes.toolbarMargin} />
-    </Fragment>
+    </div>
   );
 }
