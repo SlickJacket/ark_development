@@ -6,7 +6,9 @@ export default createMuiTheme({
   palette: {
     common: {
       red: `${traxRed}`,
-      grey: `${traxGrey}`
+      grey: `${traxGrey}`,
+      gold: "#FFDF00",
+      goldDark: "#eacc00"
     },
     primary: {
       main: `${traxRed}`
@@ -21,14 +23,14 @@ export default createMuiTheme({
   },
   typography: {
       tab: {
-        fontFamily: "Faustina",
-        fontWeight: "600",
+        fontFamily: "Roboto Condensed",
+        fontWeight: "400",
         fontSize: "1.2rem",
         textTransform: "none"
       },
       estimate: {
-        fontFamily: "Faustina",
-        fontWeight: "600",
+        fontFamily: "Roboto Condensed",
+        fontWeight: "400",
         fontSize: "1rem",
         color: "white"
       }
