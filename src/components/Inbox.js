@@ -6,7 +6,7 @@ class AdminHome extends Component {
         this.state = {  }
     }
     render() { 
-        return ( <div>Inbox</div> );
+        return ( <div style={{backgroundColor: "pink"}}>Inbox</div> );
     }
 }
  

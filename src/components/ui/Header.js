@@ -18,8 +18,14 @@ import MenuIcon from "@material-ui/icons/Menu";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
+import FaceIcon from '@material-ui/icons/Face';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
+import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ListItemText from "@material-ui/core/ListItemText";
 import IconButton from "@material-ui/core/IconButton";
 import Drawer from "@material-ui/core/Drawer";
@@ -39,7 +45,7 @@ function ElevationScroll(props) {
   });
 }
 
-const permDrawerWidth = 300;
+const permDrawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -142,7 +148,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
+//   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
@@ -268,7 +274,7 @@ export default function Header(props) {
       <Button variant="contained" color="primary" className={classes.button}>
         Metal Cost Calculator
       </Button>
-      <Tabs
+      {/* <Tabs
         value={value}
         onChange={handleChange}
         className={classes.tabContainer}
@@ -345,7 +351,7 @@ export default function Header(props) {
             {option.name}
           </MenuItem>
         ))}
-      </Menu>
+      </Menu> */}
     </Fragment>
   );
 
@@ -530,7 +536,7 @@ export default function Header(props) {
             to="/admin/inbox"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              <InboxIcon /> Inbox
+              <MailIcon /> Inbox
             </ListItemText>
           </ListItem>
           <ListItem
@@ -541,8 +547,9 @@ export default function Header(props) {
             component={Link}
             to="/admin/profile"
           >
+              
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Profile
+            <FaceIcon/> Profile
             </ListItemText>
           </ListItem>
           <ListItem
@@ -554,7 +561,7 @@ export default function Header(props) {
             to="/admin/videos"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Videos
+             <YouTubeIcon/> Videos
             </ListItemText>
           </ListItem>
           <ListItem
@@ -566,7 +573,7 @@ export default function Header(props) {
             to="/admin/gallery"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Gallery
+              <PhotoLibraryIcon/> Gallery
             </ListItemText>
           </ListItem>
           <ListItem
@@ -578,7 +585,7 @@ export default function Header(props) {
             to="/admin/resources"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Resources
+              <LibraryBooksIcon/> Resources
             </ListItemText>
           </ListItem>
           <ListItem
@@ -590,7 +597,7 @@ export default function Header(props) {
             to="/admin/analytics"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Analytics
+              <AssessmentIcon/> Analytics
             </ListItemText>
           </ListItem>
           <ListItem
@@ -602,7 +609,7 @@ export default function Header(props) {
             to="/admin/settings"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Settings
+              <SettingsIcon/> Settings
             </ListItemText>
           </ListItem>
           <ListItem
@@ -614,7 +621,7 @@ export default function Header(props) {
             to="/admin/login"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Logout
+              <ExitToAppIcon/> Logout
             </ListItemText>
           </ListItem>
         </List>
