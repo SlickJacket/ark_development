@@ -1,9 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 
-class Resources extends Component {
-  state = {
-    gold: ""
-  };
+const permDrawerWidth = 240;
+
+const useStyles = makeStyles(theme => ({
+  resourcesPageContainer: {
+    width: `calc(100% - ${permDrawerWidth}px)`,
+    marginLeft: `${permDrawerWidth}px`
+  }
+}));
+
+export default function Resources() {
+  const classes = useStyles();
+
+  return (
+    <Grid className={classes.resourcesPageContainer} container direction="column">
+      <Grid item>
+        <Typography>Resources</Typography>
+      </Grid>
+    </Grid>
+  );
+}
 
   // componentDidMount = () => {
   //   fetch("https://current-precious-metal-price.p.rapidapi.com/metals/v1/0", {
@@ -19,14 +40,3 @@ class Resources extends Component {
   //       console.log(err);
   //     });
   // };
-  render() {
-    return (
-      <div>
-        {/* <h1>{this.state.gold}</h1> */}
-       <h1> gold </h1>
-      </div>
-    );
-  }
-}
-
-export default Resources;

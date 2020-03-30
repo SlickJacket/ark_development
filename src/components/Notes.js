@@ -8,19 +8,19 @@ import Button from "@material-ui/core/Button";
 const permDrawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
-  inboxPageContainer: {
+  notesPageContainer: {
     width: `calc(100% - ${permDrawerWidth}px)`,
     marginLeft: `${permDrawerWidth}px`
   }
 }));
 
-export default function Inbox() {
+export default function Notes() {
   const classes = useStyles();
 
   return (
-    <Grid className={classes.inboxPageContainer} container direction="column">
+    <Grid className={classes.notesPageContainer} container direction="column">
       <Grid item>
-        <Typography>Inbox</Typography>
+        <Typography>Notes</Typography>
       </Grid>
     </Grid>
   );

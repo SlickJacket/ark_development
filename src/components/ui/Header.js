@@ -450,7 +450,8 @@ export default function Header(props) {
               </ListItem>
               <Collapse in={openMenu} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItem button className={classes.nested}>
+                  <ListItem button className={classes.nested} component={Link}
+                to="/admin/stones">
                     <ListItemText
                       className={classes.drawerItemText}
                       disableTypography
@@ -458,7 +459,8 @@ export default function Header(props) {
                       <FlareOutlinedIcon /> Stones
                     </ListItemText>
                   </ListItem>
-                  <ListItem button className={classes.nested}>
+                  <ListItem button className={classes.nested} component={Link}
+                to="/admin/notes">
                     <ListItemText
                       className={classes.drawerItemText}
                       disableTypography
