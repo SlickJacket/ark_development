@@ -1,15 +1,10 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import clsx from "clsx";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles } from "@material-ui/core";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
@@ -17,7 +12,6 @@ import Divider from "@material-ui/core/Divider";
 import MenuIcon from "@material-ui/icons/Menu";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
 import MailIcon from "@material-ui/icons/Mail";
 import FaceIcon from "@material-ui/icons/Face";
 import YouTubeIcon from "@material-ui/icons/YouTube";
@@ -201,61 +195,52 @@ export default function Header(props) {
   const [value, setValue] = useState(0);
   const [openMenu, setOpenMenu] = useState(false);
 
-  useEffect(() => {
-    switch (window.location.pathname) {
-      case "/admin/inbox":
-        if (value !== 0) {
-          setValue(0);
-        }
-        break;
-      case "/admin/profile":
-        if (value !== 1) {
-          setValue(1);
-        }
-        break;
+  //   <MailIcon /> <FaceIcon /> <YouTubeIcon /> <PhotoLibraryIcon />
+  //   <LibraryBooksIcon /> <AssessmentIcon /> <SettingsIcon />
 
-      case "/admin/videos":
-        if (value !== 2) {
-          setValue(2);
-        }
-        break;
-
-      case "/admin/gallery":
-        if (value !== 3) {
-          setValue(3);
-        }
-        break;
-
-      case "/admin/resources":
-        if (value !== 4) {
-          setValue(4);
-        }
-        break;
-      case "/admin/stones":
-        if (value !== 4) {
-          setValue(4);
-        }
-        break;
-      case "/admin/notes":
-        if (value !== 4) {
-          setValue(4);
-        }
-        break;
-      case "/admin/analytics":
-        if (value !== 5) {
-          setValue(5);
-        }
-        break;
-
-      case "/admin/settings":
-        if (value !== 6) {
-          setValue(6);
-        }
-        break;
-      default:
-        break;
+  const routes = [
+    { name: "Inbox", link: "/admin/inbox", value: 0, icon: <MailIcon /> },
+    { name: "Profile", link: "/admin/profile", value: 1, icon: <FaceIcon /> },
+    { name: "Videos", link: "/admin/videos", value: 2, icon: <YouTubeIcon /> },
+    {
+      name: "Gallery",
+      link: "/admin/gallery",
+      value: 3,
+      icon: <PhotoLibraryIcon />
+    },
+    {
+      name: "Resources",
+      link: "/admin/resources",
+      value: 4,
+      icon: <LibraryBooksIcon />
+    },
+    {
+      name: "Analytics",
+      link: "/admin/analytics",
+      value: 5,
+      icon: <AssessmentIcon />
+    },
+    {
+      name: "Settings",
+      link: "/admin/settings",
+      value: 6,
+      icon: <SettingsIcon />
     }
-  }, [value]);
+  ];
+
+  useEffect(() => {
+    routes.forEach(route => {
+      switch (window.location.pathname) {
+        case `${route.link}`:
+          if (value !== `${route.value}`) {
+            setValue(`${route.value}`);
+          }
+          break;
+        default:
+          break;
+      }
+    });
+  }, [value, routes]);
 
   const tabs = (
     <Fragment>
@@ -414,145 +399,77 @@ export default function Header(props) {
       </Button>
       <Divider />
       <List className={classes.drawerList} disablePadding>
-        <ListItem
-          className={classes.drawerItem}
-          divider
-          button
-          onClick={() => {
-            setOpenDrawer(false);
-            setValue(0);
-          }}
-          component={Link}
-          to="/admin/inbox"
-          selected={value === 0}
-        >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <MailIcon /> Inbox
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          className={classes.drawerItem}
-          divider
-          button
-          onClick={() => {
-            setOpenDrawer(false);
-            setValue(1);
-          }}
-          component={Link}
-          to="/admin/profile"
-          selected={value === 1}
-        >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <FaceIcon /> Profile
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          className={classes.drawerItem}
-          divider
-          button
-          onClick={() => {
-            setOpenDrawer(false);
-            setValue(2);
-          }}
-          component={Link}
-          to="/admin/videos"
-          selected={value === 2}
-        >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <YouTubeIcon /> Videos
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          className={classes.drawerItem}
-          divider
-          button
-          onClick={() => {
-            setOpenDrawer(false);
-            setValue(3);
-          }}
-          component={Link}
-          to="/admin/gallery"
-          selected={value === 3}
-        >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <PhotoLibraryIcon /> Gallery
-          </ListItemText>
-        </ListItem>
-
-        <ListItem
-          className={classes.drawerItem}
-          divider
-          button
-          onClick={() => {
-            setOpenDrawer(false);
-            setValue(4);
-          }}
-          component={Link}
-          to="/admin/resources"
-          selected={value === 4}
-        >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <LibraryBooksIcon /> Resources
-          </ListItemText>
-          {openMenu ? (
-            <ExpandLess onClick={() => setOpenMenu(false)} />
+        {routes.map(route =>
+          route.name !== "Resources" ? (
+            <ListItem
+              className={classes.drawerItem}
+              divider
+              button
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.value);
+              }}
+              component={Link}
+              to={route.link}
+              selected={value === route.value}
+            >
+              <ListItemText
+                className={classes.drawerItemText}
+                disableTypography
+              >
+                {route.icon} {route.name}
+              </ListItemText>
+            </ListItem>
           ) : (
-            <ExpandMore onClick={() => setOpenMenu(true)} />
-          )}
-        </ListItem>
-        <Collapse in={openMenu} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
-              <ListItemText
-                className={classes.drawerItemText}
-                disableTypography
+            <Fragment>
+              {" "}
+              <ListItem
+                className={classes.drawerItem}
+                divider
+                button
+                onClick={() => {
+                  setOpenDrawer(false);
+                  setValue(4);
+                }}
+                component={Link}
+                to="/admin/resources"
+                selected={value === 4}
               >
-                <FlareOutlinedIcon /> Stones
-              </ListItemText>
-            </ListItem>
-            <ListItem button className={classes.nested}>
-              <ListItemText
-                className={classes.drawerItemText}
-                disableTypography
-              >
-                <CreateOutlinedIcon /> Notes
-              </ListItemText>
-            </ListItem>
-          </List>
-        </Collapse>
-
-        <ListItem
-          className={classes.drawerItem}
-          divider
-          button
-          onClick={() => {
-            setOpenDrawer(false);
-            setValue(5);
-          }}
-          component={Link}
-          to="/admin/analytics"
-          selected={value === 5}
-        >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <AssessmentIcon /> Analytics
-          </ListItemText>
-        </ListItem>
-        <ListItem
-          className={classes.drawerItem}
-          divider
-          button
-          onClick={() => {
-            setOpenDrawer(false);
-            setValue(6);
-          }}
-          component={Link}
-          to="/admin/settings"
-          selected={value === 6}
-        >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <SettingsIcon /> Settings
-          </ListItemText>
-        </ListItem>
+                <ListItemText
+                  className={classes.drawerItemText}
+                  disableTypography
+                >
+                  <LibraryBooksIcon /> Resources
+                </ListItemText>
+                {openMenu ? (
+                  <ExpandLess onClick={() => setOpenMenu(false)} />
+                ) : (
+                  <ExpandMore onClick={() => setOpenMenu(true)} />
+                )}
+              </ListItem>
+              <Collapse in={openMenu} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItem button className={classes.nested}>
+                    <ListItemText
+                      className={classes.drawerItemText}
+                      disableTypography
+                    >
+                      <FlareOutlinedIcon /> Stones
+                    </ListItemText>
+                  </ListItem>
+                  <ListItem button className={classes.nested}>
+                    <ListItemText
+                      className={classes.drawerItemText}
+                      disableTypography
+                    >
+                      <CreateOutlinedIcon /> Notes
+                    </ListItemText>
+                  </ListItem>
+                </List>
+              </Collapse>
+            </Fragment>
+          )
+        )}
         <ListItem
           className={[classes.drawerItem, classes.drawerLogoutbutton]}
           divider
@@ -597,118 +514,27 @@ export default function Header(props) {
         </Button>
         <Divider />
         <List className={classes.drawerList} disablePadding>
-          <ListItem
-            className={classes.drawerItem}
-            divider
-            button
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-            component={Link}
-            to="/admin/inbox"
-            selected={value === 0}
-          >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              Inbox
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            className={classes.drawerItem}
-            divider
-            button
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(1);
-            }}
-            component={Link}
-            to="/admin/profile"
-            selected={value === 1}
-          >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              Profile
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            className={classes.drawerItem}
-            divider
-            button
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(2);
-            }}
-            component={Link}
-            to="/admin/videos"
-            selected={value === 2}
-          >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              Videos
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            className={classes.drawerItem}
-            divider
-            button
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(3);
-            }}
-            component={Link}
-            to="/admin/gallery"
-            selected={value === 3}
-          >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              Gallery
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            className={classes.drawerItem}
-            divider
-            button
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(4);
-            }}
-            component={Link}
-            to="/admin/resources"
-            selected={value === 4}
-          >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              Resources
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            className={classes.drawerItem}
-            divider
-            button
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(5);
-            }}
-            component={Link}
-            to="/admin/analytics"
-            selected={value === 5}
-          >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              Analytics
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            className={classes.drawerItem}
-            divider
-            button
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(6);
-            }}
-            component={Link}
-            to="/admin/settings"
-            selected={value === 6}
-          >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              Settings
-            </ListItemText>
-          </ListItem>
+          {routes.map(route => (
+            <ListItem
+              className={classes.drawerItem}
+              divider
+              button
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.value);
+              }}
+              component={Link}
+              to={route.link}
+              selected={value === route.value}
+            >
+              <ListItemText
+                className={classes.drawerItemText}
+                disableTypography
+              >
+               {route.icon} {route.name}
+              </ListItemText>
+            </ListItem>
+          ))}
           <ListItem
             className={[classes.drawerItem, classes.drawerLogoutbutton]}
             divider
@@ -718,7 +544,7 @@ export default function Header(props) {
             to="/admin/login"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              Logout
+              <ExitToAppIcon/> Logout
             </ListItemText>
           </ListItem>
         </List>
