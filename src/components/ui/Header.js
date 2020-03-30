@@ -59,14 +59,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   appBar: {
-    height: "130px",
+    height: "100px",
     width: `calc(100% - ${permDrawerWidth}px)`,
     marginLeft: permDrawerWidth,
     justifyContent: "center",
-    [theme.breakpoints.down("sm")]: {
-      width: "100%",
-      height: "100px"
-    },
     [theme.breakpoints.down("sm")]: {
       width: "100%",
       height: "90px"
@@ -74,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: "4em",
+    marginBottom: "2em",
     [theme.breakpoints.down("sm")]: {
       marginBottom: "1.5em"
     },
@@ -181,6 +177,9 @@ const useStyles = makeStyles(theme => ({
   tableContainer: {
     width: "50rem",
     marginRight: "auto"
+  },
+  expandIcons: {
+    color: "white"
   }
 }));
 
@@ -193,9 +192,6 @@ export default function Header(props) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [value, setValue] = useState(0);
   const [openMenu, setOpenMenu] = useState(false);
-
-  //   <MailIcon /> <FaceIcon /> <YouTubeIcon /> <PhotoLibraryIcon />
-  //   <LibraryBooksIcon /> <AssessmentIcon /> <SettingsIcon />
 
   const routes = [
     { name: "Inbox", link: "/admin/inbox", value: 0, icon: <MailIcon /> },
@@ -231,8 +227,8 @@ export default function Header(props) {
     routes.forEach(route => {
       switch (window.location.pathname) {
         case `${route.link}`:
-          if (value !== `${route.value}`) {
-            setValue(`${route.value}`);
+          if (value !== route.value) {
+            setValue(route.value);
           }
           break;
         default:
@@ -441,9 +437,15 @@ export default function Header(props) {
                   <LibraryBooksIcon /> Resources
                 </ListItemText>
                 {openMenu ? (
-                  <ExpandLess onClick={() => setOpenMenu(false)} />
+                  <ExpandLess
+                    className={classes.expandIcons}
+                    onClick={() => setOpenMenu(false)}
+                  />
                 ) : (
-                  <ExpandMore onClick={() => setOpenMenu(true)} />
+                  <ExpandMore
+                    className={classes.expandIcons}
+                    onClick={() => setOpenMenu(true)}
+                  />
                 )}
               </ListItem>
               <Collapse in={openMenu} timeout="auto" unmountOnExit>
@@ -530,7 +532,7 @@ export default function Header(props) {
                 className={classes.drawerItemText}
                 disableTypography
               >
-               {route.icon} {route.name}
+                {route.icon} {route.name}
               </ListItemText>
             </ListItem>
           ))}
@@ -543,7 +545,7 @@ export default function Header(props) {
             to="/admin/login"
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
-              <ExitToAppIcon/> Logout
+              <ExitToAppIcon /> Logout
             </ListItemText>
           </ListItem>
         </List>
