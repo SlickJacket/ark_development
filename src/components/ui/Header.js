@@ -144,7 +144,6 @@ const useStyles = makeStyles(theme => ({
     height: "7em"
   },
   drawerItem: {},
-  drawerLogoutbutton: {},
   drawerItemText: {
     ...theme.typography.tab,
     color: "white",
@@ -471,7 +470,7 @@ export default function Header(props) {
           )
         )}
         <ListItem
-          className={[classes.drawerItem, classes.drawerLogoutbutton]}
+          className={classes.drawerItem}
           divider
           button
           onClick={() => setOpenDrawer(false)}
@@ -536,7 +535,7 @@ export default function Header(props) {
             </ListItem>
           ))}
           <ListItem
-            className={[classes.drawerItem, classes.drawerLogoutbutton]}
+            className={classes.drawerItem}
             divider
             button
             onClick={() => setOpenDrawer(false)}
