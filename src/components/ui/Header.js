@@ -35,6 +35,14 @@ import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import Collapse from "@material-ui/core/Collapse";
 
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import Paper from "@material-ui/core/Paper";
+
 import logo from "../../assets/COA_Logo.png";
 
 function ElevationScroll(props) {
@@ -57,22 +65,27 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   appBar: {
-    height: "100px",
+    height: "130px",
     width: `calc(100% - ${permDrawerWidth}px)`,
     marginLeft: permDrawerWidth,
     justifyContent: "center",
     [theme.breakpoints.down("sm")]: {
-        width: "100%"
+      width: "100%",
+      height: "100px"
+    },
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      height: "90px"
     }
   },
   toolbarMargin: {
     ...theme.mixins.toolbar,
-    marginBottom: "3em",
-    [theme.breakpoints.down("md")]: {
-      marginBottom: "3em"
+    marginBottom: "4em",
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: "1.5em"
     },
     [theme.breakpoints.down("xs")]: {
-      marginBottom: "1em"
+      marginBottom: "2em"
     }
   },
   logo: {
@@ -147,7 +160,7 @@ const useStyles = makeStyles(theme => ({
     width: permDrawerWidth,
     flexShrink: 0,
     [theme.breakpoints.down("sm")]: {
-        display: "none"
+      display: "none"
     }
   },
   permDrawerLogo: {
@@ -167,6 +180,14 @@ const useStyles = makeStyles(theme => ({
   },
   nested: {
     paddingLeft: theme.spacing(4)
+  },
+  table: {
+    minWidth: 650,
+    marginRight: "auto"
+  },
+  tableContainer: {
+    width: "50rem",
+    marginRight: "auto"
   }
 }));
 
@@ -181,7 +202,6 @@ export default function Header(props) {
   const [openMenu, setOpenMenu] = useState(false);
 
   useEffect(() => {
-
     switch (window.location.pathname) {
       case "/admin/inbox":
         if (value !== 0) {
@@ -239,6 +259,54 @@ export default function Header(props) {
 
   const tabs = (
     <Fragment>
+      <TableContainer component={Paper} className={classes.tableContainer} style={{borderRadius: "0", boxShadow: "none"}}>
+        <Table
+          className={classes.table}
+          aria-label="g"
+          style={{ backgroundColor: theme.palette.secondary.main }}
+        >
+          <TableHead>
+            <TableRow>
+              <TableCell style={{ color: theme.palette.primary.main, borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+              </TableCell>
+              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                Gold
+              </TableCell>
+              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                Silver
+              </TableCell>
+              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                Platinum
+              </TableCell>
+              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                Paladium
+              </TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell
+                style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1rem" }}
+                align="right"
+              >
+                Per Troy Ounce
+              </TableCell>
+              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                $50000
+              </TableCell>
+              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                $50000
+              </TableCell>
+              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                $50000
+              </TableCell>
+              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+                $50000
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
       <Button variant="contained" color="primary" className={classes.button}>
         Metal Cost Calculator
       </Button>
