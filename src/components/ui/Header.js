@@ -259,26 +259,70 @@ export default function Header(props) {
 
   const tabs = (
     <Fragment>
-      <TableContainer component={Paper} className={classes.tableContainer} style={{borderRadius: "0", boxShadow: "none"}}>
+      <TableContainer
+        component={Paper}
+        className={classes.tableContainer}
+        style={{ borderRadius: "0", boxShadow: "none" }}
+      >
         <Table
           className={classes.table}
-          aria-label="g"
+          aria-label="Precious Metal Prices"
+          size="small"
           style={{ backgroundColor: theme.palette.secondary.main }}
         >
           <TableHead>
             <TableRow>
-              <TableCell style={{ color: theme.palette.primary.main, borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
-              </TableCell>
-              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+              <TableCell
+                style={{
+                  color: theme.palette.primary.main,
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              ></TableCell>
+              <TableCell
+                style={{
+                  color: "white",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
                 Gold
               </TableCell>
-              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+              <TableCell
+                style={{
+                  color: "white",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
                 Silver
               </TableCell>
-              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+              <TableCell
+                style={{
+                  color: "white",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
                 Platinum
               </TableCell>
-              <TableCell style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
+              <TableCell
+                style={{
+                  color: "white",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
                 Paladium
               </TableCell>
             </TableRow>
@@ -286,22 +330,59 @@ export default function Header(props) {
           <TableBody>
             <TableRow>
               <TableCell
-                style={{ color: "white", borderBottom: "none", fontWeight: "700", fontSize: "1rem" }}
+                style={{
+                  color: "white",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1rem"
+                }}
                 align="right"
               >
-                Per Troy Ounce
+                Per Troy Ounce:
               </TableCell>
-              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
-                $50000
+              <TableCell
+                style={{
+                  color: "green",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
+                $1,648.90
               </TableCell>
-              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
-                $50000
+              <TableCell
+                style={{
+                  color: "green",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
+                $14.77
               </TableCell>
-              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
-                $50000
+              <TableCell
+                style={{
+                  color: "green",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
+                $754.35
               </TableCell>
-              <TableCell style={{ color: "green", borderBottom: "none", fontWeight: "700", fontSize: "1.2rem" }} align="center">
-                $50000
+              <TableCell
+                style={{
+                  color: "green",
+                  borderBottom: "none",
+                  fontWeight: "700",
+                  fontSize: "1.2rem"
+                }}
+                align="center"
+              >
+                $2,292.20
               </TableCell>
             </TableRow>
           </TableBody>
