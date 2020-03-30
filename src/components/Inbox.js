@@ -6,7 +6,17 @@ class AdminHome extends Component {
     this.state = {};
   }
   render() {
-    return <div>Inbox</div>;
+    const permDrawerWidth = 240;
+    return (
+      <div
+        style={{
+          width: `calc(100% - ${permDrawerWidth}px)`,
+          marginLeft: `${permDrawerWidth}px`
+        }}
+      >
+        Inbox
+      </div>
+    );
   }
 }
 
