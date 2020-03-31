@@ -9,6 +9,8 @@ import theme from "./ui/Theme";
 import InboxTreeView from "./ui/InboxTreeView";
 import MailBox from "./ui/MailBox"
 
+import './App.css'
+
 const permDrawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({

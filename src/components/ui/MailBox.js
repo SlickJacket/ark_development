@@ -4,12 +4,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { FixedSizeList } from "react-window";
-
+import Typography from "@material-ui/core/Typography"
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import Checkbox from "@material-ui/core/Checkbox";
-import IconButton from "@material-ui/core/IconButton";
-import CommentIcon from "@material-ui/icons/Comment";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,7 +39,7 @@ export default function VirtualizedList() {
     const labelId = `checkbox-list-label-${index}`;
 
     return (
-      <ListItem button style={style} key={index} >
+      <ListItem button style={style} key={index}>
         <ListItemIcon onClick={handleToggle(index)}>
           <Checkbox
             edge="start"
@@ -49,9 +47,13 @@ export default function VirtualizedList() {
             tabIndex={-1}
             disableRipple
             inputProps={{ "aria-labelledby": labelId }}
+            color="primary"
           />
         </ListItemIcon>
-        <ListItemText primary={`John Doe: Custom Order Quote Inquiry... ${index + 1}`} />
+        <ListItemText>
+          <Typography>{`John Doe:...............Custom Order Quote Inquiry..................... ${index +
+            1}`}</Typography>{" "}
+        </ListItemText>
       </ListItem>
     );
   }
@@ -63,7 +65,7 @@ export default function VirtualizedList() {
 
   return (
     <div className={classes.root}>
-      <FixedSizeList height={500} width="100%" itemSize={46} itemCount={200}>
+      <FixedSizeList height={500} width="100%" itemSize={46} itemCount={50}>
         {renderRow}
       </FixedSizeList>
     </div>
