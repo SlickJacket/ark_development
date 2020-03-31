@@ -10,7 +10,11 @@ const permDrawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   resourcesPageContainer: {
     width: `calc(100% - ${permDrawerWidth}px)`,
-    marginLeft: `${permDrawerWidth}px`
+    marginLeft: `${permDrawerWidth}px`,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      margin: 0
+    }
   }
 }));
 
