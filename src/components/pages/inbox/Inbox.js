@@ -87,7 +87,7 @@ export default function Inbox() {
             startIcon={<AddIcon />}
             className={classes.addNoteButton}
           >
-            <Typography>Add New Note</Typography>
+            <Typography>Add Note</Typography>
           </Button>
           </Grid>
           <Grid item>
