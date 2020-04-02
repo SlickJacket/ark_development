@@ -34,7 +34,8 @@ const useStyles = makeStyles(theme => ({
     color: "white",
     "&:hover": {
       backgroundColor: "white",
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
+      border: "1px solid #262626"
     }
   },
   uploadButton: {
@@ -42,7 +43,8 @@ const useStyles = makeStyles(theme => ({
     color: "white",
     "&:hover": {
       backgroundColor: "white",
-      color: theme.palette.primary.main
+      color: theme.palette.primary.main,
+      border: "1px solid #A6141A"
     }
   }
 }));

@@ -8,6 +8,10 @@ import Divider from "@material-ui/core/Divider";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Paper from "@material-ui/core/Paper";
+import ReactSearchBox from "react-search-box";
+import theme from "../../Theme";
+
+import "../../App.css";
 
 const permDrawerWidth = 240;
 
@@ -34,7 +38,8 @@ const useStyles = makeStyles(theme => ({
     color: "white",
     "&:hover": {
       backgroundColor: "white",
-      color: theme.palette.secondary.main
+      color: theme.palette.secondary.main,
+      border: "1px solid #262626"
     }
   },
   uploadButton: {
@@ -42,14 +47,41 @@ const useStyles = makeStyles(theme => ({
     color: "white",
     "&:hover": {
       backgroundColor: "white",
-      color: theme.palette.primary.main
+      color: theme.palette.primary.main,
+      border: "1px solid #A6141A"
     }
+  },
+  filterUploadBar: {
+    padding: "1em"
   }
 }));
 
 export default function Videos() {
   const classes = useStyles();
   const videosArray = ["1", "2", "3", "4", "1", "2", "3", "4", "4", "5"];
+
+  const data = [
+    {
+      key: "john",
+      value: "John Doe"
+    },
+    {
+      key: "jane",
+      value: "Jane Doe"
+    },
+    {
+      key: "mary",
+      value: "Mary Phillips"
+    },
+    {
+      key: "robert",
+      value: "Robert"
+    },
+    {
+      key: "karius",
+      value: "Karius"
+    }
+  ];
 
   return (
     <Grid
@@ -61,34 +93,41 @@ export default function Videos() {
     >
       <Grid item className={classes.mainContainer}>
         <Grid container justify="center" direction="row" spacing={5}>
-          <Grid item xs={6}>
-            <Button
-              color="secondary"
-              className={classes.filterButton}
-              startIcon={<FilterListIcon />}
-            >
-              Filter
-            </Button>
-          </Grid>
-          <Grid item >
-            <Button
-              color="secondary"
-              className={classes.uploadButton}
-              startIcon={<AddCircleIcon />}
-            >
-              Upload
-            </Button>
+          <Grid item xs={12}>
+            <Grid container justify="space-around" className={classes.filterUploadBar}>
+              <Grid item>
+                <Button
+                  color="secondary"
+                  className={classes.filterButton}
+                  startIcon={<FilterListIcon />}
+                >
+                  Filter
+                </Button>
+              </Grid>
+              <Grid item xs={5} sm={4} className={classes.searchBarContainer}>
+                <ReactSearchBox
+                  placeholder="Search"
+                  data={data}
+                  callback={record => console.log(record)}
+                  dropDownHoverColor={theme.palette.common.red}
+                />
+              </Grid>
+              <Grid item>
+                <Button
+                  color="secondary"
+                  className={classes.uploadButton}
+                  startIcon={<AddCircleIcon />}
+                >
+                  Upload
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item xs={11}>
             <Divider />
           </Grid>
           {videosArray.map(video => (
-            <Grid
-              item
-              xs={12}
-              lg={6}
-              className={classes.videoItemContainer}
-            >
+            <Grid item xs={12} lg={6} className={classes.videoItemContainer}>
               <Paper elevation={2}>
                 <Grid container spacing={3} justify="space-evenly">
                   <Grid item xs={7}>
