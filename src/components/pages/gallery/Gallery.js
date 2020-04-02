@@ -53,6 +53,9 @@ const useStyles = makeStyles(theme => ({
   },
   filterUploadBar: {
     padding: "1em"
+  },
+  instaImage: {
+    width: "98%"
   }
 }));
 
@@ -130,12 +133,12 @@ export default function Gallery() {
             <Divider />
           </Grid>
           <Grid item xs={11}>
-            <Grid container>
+            <Grid container flex="wrap" alignItems="center">
               {galleryArray.map(video => (
-                <Grid item lg={3}>
+                <Grid item xs={4} md={3}>
                   <img
-                    style={{ width: "265px" }}
-                    src="https://i.etsystatic.com/12439953/r/il/667d5d/1133054533/il_570xN.1133054533_g0yq.jpg"
+                    className={classes.instaImage}
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTH68VZgSo_OTJpdUlvVxR8FJgHXxGOifa62qFRldft8LrEv_BM&usqp=CAU"
                     alt="test photo"
                   />
                 </Grid>
