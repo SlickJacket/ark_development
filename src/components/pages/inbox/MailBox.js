@@ -7,12 +7,18 @@ import { FixedSizeList } from "react-window";
 import Typography from "@material-ui/core/Typography"
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Checkbox from "@material-ui/core/Checkbox";
+import Paper from "@material-ui/core/Paper"
+
+import "../../App.css"
 
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    backgroundColor: theme.palette.background.paper
+    backgroundColor: "transparent"
+  },
+  boxPaper: {
+    borderRadius: "1%"
   }
 }));
 
@@ -65,9 +71,11 @@ export default function VirtualizedList() {
 
   return (
     <div className={classes.root}>
-      <FixedSizeList height={500} width="100%" itemSize={46} itemCount={50}>
+      <Paper elevation={2} className={classes.boxPaper}>
+      <FixedSizeList height={500} width="100%"className="fixedSizeBox" overflow="hidden" itemSize={46} itemCount={50}>
         {renderRow}
       </FixedSizeList>
+      </Paper>
     </div>
   );
 }

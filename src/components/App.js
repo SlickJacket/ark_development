@@ -10,6 +10,7 @@ import Notes from "./pages/notes/Notes"
 import Analytics from "./pages/analytics/Analytics"
 import Settings from "./pages/settings/Settings"
 
+import './App.css'
 
 import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";

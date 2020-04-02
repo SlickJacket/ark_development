@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   filterUploadBar: {
-    padding: "1em"
+    paddingTop: "1em"
   }
 }));
 
