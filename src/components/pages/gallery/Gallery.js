@@ -8,6 +8,10 @@ import Divider from "@material-ui/core/Divider";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Paper from "@material-ui/core/Paper";
+import ReactSearchBox from "react-search-box";
+import theme from "../../Theme";
+
+import "../../App.css";
 
 const permDrawerWidth = 240;
 
@@ -46,12 +50,38 @@ const useStyles = makeStyles(theme => ({
       color: theme.palette.primary.main,
       border: "1px solid #A6141A"
     }
+  },
+  filterUploadBar: {
+    padding: "1em"
   }
 }));
 
 export default function Gallery() {
   const classes = useStyles();
   const galleryArray = ["1", "2", "3", "4", "1", "2", "3", "4", "4", "5"];
+
+  const data = [
+    {
+      key: "john",
+      value: "John Doe"
+    },
+    {
+      key: "jane",
+      value: "Jane Doe"
+    },
+    {
+      key: "mary",
+      value: "Mary Phillips"
+    },
+    {
+      key: "robert",
+      value: "Robert"
+    },
+    {
+      key: "karius",
+      value: "Karius"
+    }
+  ];
 
   return (
     <Grid
@@ -62,23 +92,39 @@ export default function Gallery() {
     >
       <Grid item className={classes.mainContainer}>
         <Grid container justify="center" direction="row" spacing={5}>
-          <Grid item xs={6}>
-            <Button
-              color="secondary"
-              className={classes.filterButton}
-              startIcon={<FilterListIcon />}
+          <Grid item xs={12}>
+            <Grid
+              container
+              justify="space-around"
+              className={classes.filterUploadBar}
             >
-              Filter
-            </Button>
-          </Grid>
-          <Grid item>
-            <Button
-              color="secondary"
-              className={classes.uploadButton}
-              startIcon={<AddCircleIcon />}
-            >
-              Upload
-            </Button>
+              <Grid item>
+                <Button
+                  color="secondary"
+                  className={classes.filterButton}
+                  startIcon={<FilterListIcon />}
+                >
+                  Filter
+                </Button>
+              </Grid>
+              <Grid item xs={5} sm={4} className={classes.searchBarContainer}>
+                <ReactSearchBox
+                  placeholder="Search"
+                  data={data}
+                  callback={record => console.log(record)}
+                  dropDownHoverColor={theme.palette.common.red}
+                />
+              </Grid>
+              <Grid item>
+                <Button
+                  color="secondary"
+                  className={classes.uploadButton}
+                  startIcon={<AddCircleIcon />}
+                >
+                  Upload
+                </Button>
+              </Grid>
+            </Grid>
           </Grid>
           <Grid item xs={11}>
             <Divider />
@@ -87,7 +133,8 @@ export default function Gallery() {
             <Grid container>
               {galleryArray.map(video => (
                 <Grid item lg={3}>
-                  <img style={{width: "265px"}}
+                  <img
+                    style={{ width: "265px" }}
                     src="https://i.etsystatic.com/12439953/r/il/667d5d/1133054533/il_570xN.1133054533_g0yq.jpg"
                     alt="test photo"
                   />
