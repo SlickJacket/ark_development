@@ -6,11 +6,12 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import AddIcon from "@material-ui/icons/Add";
 import ReactSearchBox from "react-search-box";
-import theme from "./ui/Theme";
-import InboxTreeView from "./ui/InboxTreeView";
-import MailBox from "./ui/MailBox";
+import theme from "../../Theme";
+import InboxTreeView from "./InboxTreeView";
+import MailBox from "./MailBox";
+import Divider from "@material-ui/core/Divider";
 
-import "./App.css";
+import "../../App.css";
 
 const permDrawerWidth = 240;
 
@@ -30,11 +31,14 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   mailContainer: {
-    backgroundColor: "blue",
     textAlign: "center"
   },
-  composeButton: {
-    width: "100%"
+  addNoteButton: {
+    width: "100%",
+    borderTopRightRadius: theme.spacing(2),
+    borderBottomRightRadius: theme.spacing(2),
+    borderTopLeftRadius: theme.spacing(2),
+    borderBottomLeftRadius: theme.spacing(2)
   }
 }));
 
@@ -65,7 +69,7 @@ export default function Inbox() {
   ];
 
   return (
-    <Grid className={classes.inboxPageContainer} container direction="row">
+    <Grid className={classes.inboxPageContainer} wrap="wrap" container direction="row" spacing={3}>
       <Grid item lg={12} className={classes.searchBarContainer}>
         <ReactSearchBox
           placeholder="Search"
@@ -75,10 +79,24 @@ export default function Inbox() {
         />
       </Grid>
       <Grid item className={classes.sideBarContainer} lg={4}>
-        <Button variant="contained" color="secondary" startIcon={<AddIcon />} className={classes.composeButton}>
-          <Typography>Compose</Typography>
-        </Button>
-        <InboxTreeView />
+        <Grid container direction="column" spacing={5}>
+          <Grid item >
+          <Button
+            variant="contained"
+            color="secondary"
+            startIcon={<AddIcon />}
+            className={classes.addNoteButton}
+          >
+            <Typography>Add New Note</Typography>
+          </Button>
+          </Grid>
+          <Grid item>
+          <Divider />
+          </Grid>
+          <Grid item>
+          <InboxTreeView />
+          </Grid>
+        </Grid>
       </Grid>
       <Grid item className={classes.mailContainer} lg={8}>
         <MailBox />

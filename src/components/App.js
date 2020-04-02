@@ -1,19 +1,19 @@
 import React from "react";
-import Header from "../components/ui/Header";
-import Inbox from "../components/Inbox";
-import Profile from "../components/Profile"
-import Videos from "./Videos.js"
-import Gallery from "../components/Gallery"
-import Resources from "../components/Resources";
-import Stones from "../components/Stones"
-import Notes from "../components/Notes"
-import Analytics from "../components/Analytics"
-import Settings from "../components/Settings"
+import Header from "./header/Header";
+import Inbox from "./pages/inbox/Inbox";
+import Profile from "./pages/profile/Profile"
+import Videos from "./pages/videos/Videos"
+import Gallery from "./pages/gallery/Gallery"
+import Resources from "./pages/resources/Resources";
+import Stones from "./pages/stones/Stones"
+import Notes from "./pages/notes/Notes"
+import Analytics from "./pages/analytics/Analytics"
+import Settings from "./pages/settings/Settings"
 
 
 import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
-import theme from "./ui/Theme";
+import theme from "./Theme";
 
 function App() {
   return (

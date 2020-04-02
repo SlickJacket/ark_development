@@ -7,7 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 
-import coverImg from "../assets/space130.jpg";
+import coverImg from "../../../assets/space130.jpg";
 
 const permDrawerWidth = 240;
 

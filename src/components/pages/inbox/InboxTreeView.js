@@ -130,7 +130,7 @@ export default function GmailTreeView() {
       defaultExpandIcon={<ArrowRightIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
     >
-      <StyledTreeItem nodeId="1" labelText="All Mail" labelIcon={MailIcon} />
+      <StyledTreeItem nodeId="1" labelText="All Quote Requests" labelIcon={MailIcon} />
       <StyledTreeItem nodeId="9" labelText="Categories" labelIcon={Label}>
         <StyledTreeItem
           nodeId="5"
@@ -142,7 +142,7 @@ export default function GmailTreeView() {
         />
         <StyledTreeItem
           nodeId="6"
-          labelText="Open Projects"
+          labelText="Open Requests"
           labelIcon={RadioButtonUncheckedIcon}
           labelInfo="2,294"
           color="#e3742f"
