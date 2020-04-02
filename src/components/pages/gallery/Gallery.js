@@ -57,7 +57,6 @@ export default function Gallery() {
       alignItems="center"
       container
       direction="column"
-      spacing={2}
     >
       <Grid item className={classes.mainContainer}>
         <Grid container justify="center" direction="row" spacing={5}>
@@ -70,7 +69,7 @@ export default function Gallery() {
               Filter
             </Button>
           </Grid>
-          <Grid item xs={6}>
+          <Grid item>
             <Button
               color="secondary"
               className={classes.uploadButton}
