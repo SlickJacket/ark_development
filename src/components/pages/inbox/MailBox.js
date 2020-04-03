@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { FixedSizeList } from "react-window";
-import Typography from "@material-ui/core/Typography"
+import Typography from "@material-ui/core/Typography";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Checkbox from "@material-ui/core/Checkbox";
-import Paper from "@material-ui/core/Paper"
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
-import "../../App.css"
-
+import "../../App.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,6 +24,19 @@ const useStyles = makeStyles(theme => ({
 
 export default function VirtualizedList() {
   const classes = useStyles();
+  const [itemSize, setItemSize] = useState(46);
+
+  document.getElementsByTagName("BODY")[0].onresize = function() {
+    myFunction();
+  };
+
+  function myFunction() {
+    if (window.innerWidth < 600) {
+      setItemSize(100);
+    } else {
+      setItemSize(46);
+    }
+  }
 
   const [checked, setChecked] = React.useState([]);
 
@@ -71,11 +84,22 @@ export default function VirtualizedList() {
 
   return (
     <div className={classes.root}>
-      <Paper elevation={2} className={classes.boxPaper}>
-      <FixedSizeList height={500} width="100%"className="fixedSizeBox" overflow="hidden" itemSize={46} itemCount={50}>
-        {renderRow}
-      </FixedSizeList>
-      </Paper>
+      <Grid container>
+        <Grid item xs={12}>
+          <Paper elevation={2} className={classes.boxPaper}>
+            <FixedSizeList
+              height={500}
+              width="100%"
+              className="fixedSizeBox"
+              overflow="hidden"
+              itemSize={itemSize}
+              itemCount={50}
+            >
+              {renderRow}
+            </FixedSizeList>
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 }

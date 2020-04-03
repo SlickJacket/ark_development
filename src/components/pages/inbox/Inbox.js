@@ -31,7 +31,10 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   mailContainer: {
-    textAlign: "center"
+    textAlign: "center",
+    [theme.breakpoints.down("md")]: {
+      width: "100%"
+    }
   },
   addNoteButton: {
     width: "100%",
@@ -39,6 +42,11 @@ const useStyles = makeStyles(theme => ({
     borderBottomRightRadius: theme.spacing(2),
     borderTopLeftRadius: theme.spacing(2),
     borderBottomLeftRadius: theme.spacing(2)
+  },
+  treeView: {
+    [theme.breakpoints.down("md")]: {
+     display: "none"
+    }
   }
 }));
 
@@ -79,7 +87,7 @@ export default function Inbox() {
         />
       </Grid>
       <Grid item className={classes.sideBarContainer} lg={4}>
-        <Grid container direction="column" spacing={5}>
+        <Grid container direction="column" spacing={3} >
           <Grid item >
           <Button
             variant="contained"
@@ -93,12 +101,12 @@ export default function Inbox() {
           <Grid item>
           <Divider />
           </Grid>
-          <Grid item>
+          <Grid item lg={12}className={classes.treeView}>
           <InboxTreeView />
           </Grid>
         </Grid>
       </Grid>
-      <Grid item className={classes.mailContainer} lg={8}>
+      <Grid item className={classes.mailContainer} md={12} lg={8}>
         <MailBox />
       </Grid>
     </Grid>
