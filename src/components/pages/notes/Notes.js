@@ -28,6 +28,13 @@ const useStyles = makeStyles(theme => ({
     height: "40em",
     textAlign: "center"
   },
+  titleTextField: {
+    width: "50%"
+  },
+  titleInput: {
+    fontSize: 50,
+    maxLength: "12"
+  },
   contentTextField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit
@@ -53,7 +60,22 @@ export default function Notes() {
         <Paper className={classes.notePaper}>
           <Grid container direction="row" justify="center">
             <Grid item xs={11}>
-              <Typography variant="h4">Title</Typography>
+              <TextField
+                // label="Add a Note"
+                placeholder="Title"
+                variant="standard"
+                maxLength="2"
+                // rowsMax="4"
+                // onChange={handleChange("multiline")}
+                className={classes.titleTextField}
+                InputProps={{
+                  classes: {
+                    input: classes.titleInput
+                  }
+                }}
+                inputProps={{maxLength: 15}}
+                margin="normal"
+              />
             </Grid>
             <Grid item xs={11}>
               <TextField
@@ -64,7 +86,6 @@ export default function Notes() {
                 multiline
                 // rowsMax="4"
                 fullWidth
-                // value="Multiline Value"
                 // onChange={handleChange("multiline")}
                 className={classes.contentTextField}
                 margin="normal"
