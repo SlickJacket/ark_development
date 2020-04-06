@@ -67,7 +67,13 @@ body::-webkit-scrollbar-thumb {
 
 @media all and (max-width: 600px) {
   #inboxQuoteItem {
-    
+    overflow: hidden;
 
+  }
+  .inboxItemText {
+      flex-wrap: nowrap;
+      width: 20rem;
+      /* height: 2rem; */
+      overflow: hidden;
   }
 }

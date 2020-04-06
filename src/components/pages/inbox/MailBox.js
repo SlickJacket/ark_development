@@ -32,7 +32,7 @@ export default function VirtualizedList() {
 
   function myFunction() {
     if (window.innerWidth < 600) {
-      setItemSize(100);
+      setItemSize(90);
     } else {
       setItemSize(46);
     }
@@ -70,7 +70,7 @@ export default function VirtualizedList() {
           />
         </ListItemIcon>
         <ListItemText>
-          <Typography>{`John Doe:...............Custom Order Quote Inquiry..................... ${index +
+          <Typography className="inboxItemText">{`John Doe:...............Custom Order Quote Inquiry..................... ${index +
             1}`}</Typography>{" "}
         </ListItemText>
       </ListItem>
