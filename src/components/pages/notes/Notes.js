@@ -27,7 +27,8 @@ const useStyles = makeStyles(theme => ({
   notePaper: {
     backgroundColor: "white",
     height: "40em",
-    textAlign: "center"
+    textAlign: "center",
+    overflowY: "scroll"
   },
   titleTextField: {
     marginLeft: theme.spacing.unit,
@@ -60,7 +61,7 @@ export default function Notes() {
         </Paper>
       </Grid>
       <Grid item xs={9}>
-        <Paper className={classes.notePaper}>
+        <Paper className="notePaper">
           <Editor/>
         </Paper>
       </Grid>
