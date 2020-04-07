@@ -26,7 +26,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .jwfbbd {
-  background-color: rgba(182, 182, 182, 0.358);
+  background-color: rgba(255, 255, 255, 0.762);
   color: black;
   font-family: "Roboto Condensed", sans-serif;
   font-weight: 400;
@@ -50,7 +50,7 @@ body::-webkit-scrollbar-thumb {
 
 .fixedSizeBox::-webkit-scrollbar {
   width: 10px;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 .fixedSizeBox::-webkit-scrollbar-thumb {
@@ -64,6 +64,26 @@ body::-webkit-scrollbar-thumb {
     color-stop(0.86, #a6141a)
   );
 }
+
+/* Note Folder Container */
+
+.noteFolderContainer {
+    background-color: rgb(208, 208, 208);
+    height: 35em;
+    text-align: center;
+    overflow-y: scroll;
+  }
+
+  .noteFolderContainer::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE and Edge */
+  .noteFolderContainer {
+    -ms-overflow-style: none;
+  }
+
+/* End Note Foler Container */
 
 /* note paper styling */
 
@@ -98,6 +118,14 @@ body::-webkit-scrollbar-thumb {
   }
 
 /* End note paper styling */
+
+.ql-editor p {
+    font-size: 18px;
+}
+
+.ql-container.ql-snow {
+    border: none !important;
+}
 
 @media all and (max-width: 600px) {
   #inboxQuoteItem {

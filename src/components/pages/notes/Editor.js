@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
+import "../../App.css";
+
 export default function Editor() {
   const [value, setValue] = useState("");
 
@@ -9,7 +11,7 @@ export default function Editor() {
     toolbar: [
       [{ font: [] }],
       [{ align: [] }],
-      [{ header: [1, 2, false] }],
+      [{ size: ["small", false, "large", "huge"] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [
         { list: "ordered" },
@@ -36,6 +38,8 @@ export default function Editor() {
     "image",
     "color",
     "background",
+    "size",
+    "align",
     "font"
   ];
 
