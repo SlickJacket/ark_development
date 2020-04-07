@@ -35,18 +35,18 @@ const useStyles = makeStyles(theme => ({
   },
   filterButton: {
     backgroundColor: theme.palette.secondary.main,
-    color: "white",
+    color: "rgb(208, 208, 208)",
     "&:hover": {
-      backgroundColor: "white",
+      backgroundColor: "rgb(208, 208, 208)",
       color: theme.palette.secondary.main,
       border: "1px solid #262626"
     }
   },
   uploadButton: {
     backgroundColor: theme.palette.primary.main,
-    color: "white",
+    color: "rgb(208, 208, 208)",
     "&:hover": {
-      backgroundColor: "white",
+      backgroundColor: "rgb(208, 208, 208)",
       color: theme.palette.primary.main,
       border: "1px solid #A6141A"
     }

@@ -28,7 +28,9 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   sideBarContainer: {
-    textAlign: "center"
+    textAlign: "center",
+    backgroundColor: "white",
+    borderRadius: "5px"
   },
   mailContainer: {
     textAlign: "center",
