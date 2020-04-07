@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
+import Editor from "./Editor"
 
 const permDrawerWidth = 240;
 
@@ -29,10 +30,12 @@ const useStyles = makeStyles(theme => ({
     textAlign: "center"
   },
   titleTextField: {
-    width: "50%"
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+    // width: "90%"
   },
   titleInput: {
-    fontSize: 50,
+    fontSize: 40,
     maxLength: "12"
   },
   contentTextField: {
@@ -58,42 +61,46 @@ export default function Notes() {
       </Grid>
       <Grid item xs={9}>
         <Paper className={classes.notePaper}>
-          <Grid container direction="row" justify="center">
-            <Grid item xs={11}>
-              <TextField
-                // label="Add a Note"
-                placeholder="Title"
-                variant="standard"
-                maxLength="2"
-                // rowsMax="4"
-                // onChange={handleChange("multiline")}
-                className={classes.titleTextField}
-                InputProps={{
-                  classes: {
-                    input: classes.titleInput
-                  }
-                }}
-                inputProps={{maxLength: 15}}
-                margin="normal"
-              />
-            </Grid>
-            <Grid item xs={11}>
-              <TextField
-                id="standard-multiline-flexible"
-                // label="Add a Note"
-                placeholder="Add a Note"
-                variant="standard"
-                multiline
-                // rowsMax="4"
-                fullWidth
-                // onChange={handleChange("multiline")}
-                className={classes.contentTextField}
-                margin="normal"
-              />
-            </Grid>
-          </Grid>
+          <Editor/>
         </Paper>
       </Grid>
     </Grid>
   );
 }
+
+
+
+
+// <Grid container direction="row" justify="flex-start">
+//             <Grid item xs={5}>
+//               <TextField
+//                 // label="Add a Note"
+//                 placeholder="Title"
+//                 variant="standard"
+//                 // rowsMax="4"
+//                 // onChange={handleChange("multiline")}
+//                 className={classes.titleTextField}
+//                 InputProps={{
+//                   classes: {
+//                     input: classes.titleInput
+//                   }
+//                 }}
+//                 inputProps={{maxLength: 20}}
+//                 margin="normal"
+//               />
+//             </Grid>
+//             <Grid item xs={11}>
+//               <TextField
+//                 id="standard-multiline-flexible"
+//                 // label="Add a Note"
+//                 placeholder="Add a Note"
+//                 variant="standard"
+//                 multiline
+//                 // rowsMax="4"
+//                 fullWidth
+//                 // onChange={handleChange("multiline")}
+//                 className={classes.contentTextField}
+//                 margin="normal"
+//               />
+//             </Grid>
+//           </Grid>

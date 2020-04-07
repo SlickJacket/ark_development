@@ -329,7 +329,7 @@ export default function Header(props) {
                 }}
                 align="center"
               >
-                $1,648.90
+                $1,667.85
               </TableCell>
               <TableCell
                 style={{
@@ -340,7 +340,7 @@ export default function Header(props) {
                 }}
                 align="center"
               >
-                $14.77
+                $14.89
               </TableCell>
               <TableCell
                 style={{
@@ -351,7 +351,7 @@ export default function Header(props) {
                 }}
                 align="center"
               >
-                $754.35
+                $740.10
               </TableCell>
               <TableCell
                 style={{
@@ -362,7 +362,7 @@ export default function Header(props) {
                 }}
                 align="center"
               >
-                $2,292.20
+                $2,166.85
               </TableCell>
             </TableRow>
           </TableBody>
