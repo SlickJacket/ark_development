@@ -1,39 +1,20 @@
-import React from "react";
-import Header from "./header/Header";
-import Inbox from "./pages/inbox/Inbox";
-import Profile from "./pages/profile/Profile"
-import Videos from "./pages/videos/Videos"
-import Gallery from "./pages/gallery/Gallery"
-import Resources from "./pages/resources/Resources";
-import Stones from "./pages/stones/Stones"
-import Notes from "./pages/notes/Notes"
-import Analytics from "./pages/analytics/Analytics"
-import Settings from "./pages/settings/Settings"
+import React, { Component, Fragment } from "react";
+import AdminDashoard from "./AdminDashboard";
+import ClientView from "./ClientView"
+import "./App.css";
 
-import './App.css'
+class App extends Component {
+  renderView = () => {
+    if (window.location.href.indexOf("admin") > -1) {
+      return <AdminDashoard/>;
+    } else {
+      return <ClientView/>;
+    }
+  };
 
-import { Route, Switch } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/styles";
-import theme from "./Theme";
-
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <Switch>
-        <Route exact path="/admin/inbox" component={Inbox} />
-        <Route exact path="/admin/profile" component={Profile} />
-        <Route exact path="/admin/videos" component={Videos} />
-        <Route exact path="/admin/gallery" component={Gallery} />
-        <Route exact path="/admin/resources" component={Resources} />
-        <Route exact path="/admin/stones" component={Stones} />
-        <Route exact path="/admin/notes" component={Notes} />
-        <Route exact path="/admin/metal-calculator" component={Resources} />
-        <Route exact path="/admin/analytics" component={Analytics} />
-        <Route exact path="/admin/settings" component={Settings} />
-      </Switch>
-    </ThemeProvider>
-  );
+  render() {
+    return (<Fragment>{this.renderView()}</Fragment>);
+  }
 }
 
 export default App;
