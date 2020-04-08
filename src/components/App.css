@@ -68,74 +68,92 @@ body::-webkit-scrollbar-thumb {
 /* Note Folder Container */
 
 .noteFolderContainer {
-    background-color: rgb(208, 208, 208);
-    height: 37em;
-    text-align: center;
-    overflow-y: scroll;
-  }
+  background-color: rgb(208, 208, 208);
+  height: 37em;
+  text-align: center;
+  overflow-y: scroll;
+}
 
-  .noteFolderContainer::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Hide scrollbar for IE and Edge */
-  .noteFolderContainer {
-    -ms-overflow-style: none;
-  }
+.noteFolderContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.noteFolderContainer {
+  -ms-overflow-style: none;
+}
 
 /* End Note Foler Container */
 
 /* note paper styling */
 
 .notePaper {
-    background-color: white;
-    height: 40em;
-    text-align: center;
-    overflow-y: scroll;
+  background-color: white;
+  height: 40em;
+  text-align: center;
+  overflow-y: scroll;
 }
 
 .notePaper::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #f5f5f5;
-    border-radius: 10px;
-  }
-  
-  .notePaper::-webkit-scrollbar {
-    width: 10px;
-    background-color: #f5f5f5;
-  }
-  
-  .notePaper::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-image: -webkit-gradient(
-      linear,
-      left bottom,
-      left top,
-      color-stop(0.44, #b74347),
-      color-stop(0.72, #ae2b30),
-      color-stop(0.86, #a6141a)
-    );
-  }
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+  border-radius: 10px;
+}
+
+.notePaper::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+.notePaper::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.44, #b74347),
+    color-stop(0.72, #ae2b30),
+    color-stop(0.86, #a6141a)
+  );
+}
 
 /* End note paper styling */
 
 .ql-editor p {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .ql-container.ql-snow {
-    border: none !important;
+  border: none !important;
 }
+
+/* Signup page */
+
+#signupPageContainer {
+  background-image: url("https://russiabusinesstoday.com/wp-content/uploads/2018/07/diamonds.jpg");
+  width: "100%";
+  height: "100vh";
+  background-color: blue;
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-size: cover;
+  position: "absolute";
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* End Signup page */
 
 @media all and (max-width: 600px) {
   #inboxQuoteItem {
     overflow: hidden;
-
   }
   .inboxItemText {
-      flex-wrap: nowrap;
-      width: 20rem;
-      /* height: 2rem; */
-      overflow: hidden;
+    flex-wrap: nowrap;
+    width: 20rem;
+    /* height: 2rem; */
+    overflow: hidden;
   }
 }

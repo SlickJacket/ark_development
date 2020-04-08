@@ -9,6 +9,8 @@ import Stones from "./pages/stones/Stones";
 import Notes from "./pages/notes/Notes";
 import Analytics from "./pages/analytics/Analytics";
 import Settings from "./pages/settings/Settings";
+import Signup from "./pages/signup/Signup";
+import Login from "./pages/login/Login";
 
 import "./App.css";
 
@@ -16,13 +18,21 @@ import { Route, Switch } from "react-router-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./Theme";
 
-function AdminDashboard() {
+export default function AdminDashboard() {
+
+    const renderHeader = () => {
+        if (window.location.href.indexOf("signup") === -1 && window.location.href.indexOf("login") === -1 ) {
+          return <Header/>;
+        }
+      };
+
+
   return (
     <ThemeProvider theme={theme}>
-      <Header />
+      {renderHeader()}
       <Switch>
-        <Route exact path="/admin/login" component={Inbox} />
-        <Route exact path="/admin/signup" component={Inbox} />
+        <Route exact path="/admin/login" component={Login} />
+        <Route exact path="/admin/signup" component={Signup} />
         <Route exact path="/admin/inbox" component={Inbox} />
         <Route exact path="/admin/profile" component={Profile} />
         <Route exact path="/admin/videos" component={Videos} />
@@ -37,5 +47,3 @@ function AdminDashboard() {
     </ThemeProvider>
   );
 }
-
-export default AdminDashboard;
