@@ -9,7 +9,6 @@ import "../../App.css";
 
 const useStyles = makeStyles(theme => ({
   signupPageContainer: {
-    backgroundColor: theme.palette.primary.light,
     backgroundImage:
       "url('https://russiabusinesstoday.com/wp-content/uploads/2018/07/diamonds.jpg')",
     backgroundPosition: "center",
@@ -21,7 +20,11 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     right: 0,
     bottom: 0,
-    left: 0
+    left: 0,
+    [theme.breakpoints.down("sm")]: {
+        justifyContent: "center"
+    }
+    
   },
   formSection: {
     backgroundColor: "white",
@@ -35,7 +38,7 @@ export default function Signup() {
 
   return (
     <Grid container className={classes.signupPageContainer} justify="flex-end">
-      <Grid item xs={6}>
+      <Grid item xs={9} md={6} >
         <Paper elevation={3} square className={classes.formSection}>
           <SignupForm/>
         </Paper>
