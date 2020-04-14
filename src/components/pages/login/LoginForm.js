@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
@@ -21,27 +22,59 @@ function Copyright() {
   );
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "10%"
+    padding: "10%",
   },
   resize: {
-    fontSize: 20
+    fontSize: 20,
   },
   form: {
     width: "100%",
-    marginTop: theme.spacing(3)
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2)
-  }
+    margin: theme.spacing(3, 0, 2),
+  },
 }));
 
 export default function LoginForm() {
   const classes = useStyles();
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.jwt) {
+          localStorage.token = data.jwt;
+          localStorage.email = data.user.email;
+          localStorage.id = data.user.id;
+          // this.props.getProfile()
+          setEmail("");
+          setPassword("");
+          history.push("/admin/inbox");
+          window.location.reload(false);
+        }
+      });
+  };
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,8 +89,8 @@ export default function LoginForm() {
                 variant="standard"
                 InputProps={{
                   classes: {
-                    input: classes.resize
-                  }
+                    input: classes.resize,
+                  },
                 }}
                 required
                 fullWidth
@@ -65,6 +98,9 @@ export default function LoginForm() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
               />
             </Grid>
             <Grid item xs={12}>
@@ -72,8 +108,8 @@ export default function LoginForm() {
                 variant="standard"
                 InputProps={{
                   classes: {
-                    input: classes.resize
-                  }
+                    input: classes.resize,
+                  },
                 }}
                 required
                 fullWidth
@@ -82,6 +118,9 @@ export default function LoginForm() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
               />
             </Grid>
           </Grid>
@@ -91,6 +130,7 @@ export default function LoginForm() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
           >
             Submit
           </Button>
