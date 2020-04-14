@@ -197,6 +197,7 @@ export default function Header(props) {
 
   const handleClick = () => {
     setOpenDrawer(false);
+    localStorage.clear();
     history.push("/admin/login");
     window.location.reload(false);
   };
