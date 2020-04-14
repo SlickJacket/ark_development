@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/ToolBar";
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
@@ -44,19 +44,19 @@ function ElevationScroll(props) {
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0
+    threshold: 0,
   });
 
   return React.cloneElement(children, {
-    elevation: trigger ? 4 : 0
+    elevation: trigger ? 4 : 0,
   });
 }
 
 const permDrawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   appBar: {
     height: "100px",
@@ -65,35 +65,35 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "center",
     [theme.breakpoints.down("sm")]: {
       width: "100%",
-      height: "90px"
-    }
+      height: "90px",
+    },
   },
   toolbarMargin: {
     ...theme.mixins.toolbar,
     marginBottom: "2em",
     [theme.breakpoints.down("sm")]: {
-      marginBottom: "1.5em"
+      marginBottom: "1.5em",
     },
     [theme.breakpoints.down("xs")]: {
-      marginBottom: "2em"
-    }
+      marginBottom: "2em",
+    },
   },
   logo: {
     height: "7em",
     [theme.breakpoints.up("md")]: {
-      display: "none"
+      display: "none",
     },
     [theme.breakpoints.down("sm")]: {
-      height: "4.5em"
-    }
+      height: "4.5em",
+    },
   },
   tabContainer: {
-    marginLeft: "auto"
+    marginLeft: "auto",
   },
   tab: {
     ...theme.typography.tab,
     minWidth: 10,
-    marginLeft: "15px"
+    marginLeft: "15px",
   },
   button: {
     ...theme.typography.estimate,
@@ -102,85 +102,85 @@ const useStyles = makeStyles(theme => ({
     textTransform: "none",
     borderRadius: 0,
     [theme.breakpoints.down("md")]: {
-      width: "20%"
+      width: "20%",
     },
     [theme.breakpoints.down("sm")]: {
       margin: "auto",
-      width: "130px"
-    }
+      width: "130px",
+    },
   },
   menu: {
     backgroundColor: theme.palette.primary.main,
     color: "white",
-    borderRadius: 0
+    borderRadius: 0,
   },
   menuItem: {
     ...theme.typography.tab,
     opacity: 0.6,
     "&:hover": {
-      opacity: 1
-    }
+      opacity: 1,
+    },
   },
   iconContainer: {
-    marginRight: "auto"
+    marginRight: "auto",
   },
   drawerIcon: {
     height: "50px",
-    width: "50px"
+    width: "50px",
   },
   drawer: {
     backgroundColor: theme.palette.primary.main,
-    width: "12rem"
+    width: "12rem",
   },
   drawerList: {
     marginTop: "2rem",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   drawerLogo: {
-    height: "7em"
+    height: "7em",
   },
   drawerItem: {},
   drawerItemText: {
     ...theme.typography.tab,
     color: "white",
-    textAlign: "center"
+    textAlign: "center",
   },
   permDrawer: {
     width: permDrawerWidth,
     flexShrink: 0,
     [theme.breakpoints.down("sm")]: {
-      display: "none"
-    }
+      display: "none",
+    },
   },
   permDrawerLogo: {
     height: "10em",
-    paddingTop: "none"
+    paddingTop: "none",
   },
   permDrawerPaper: {
     width: permDrawerWidth,
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   // necessary for content to be below app bar
   //   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3)
+    padding: theme.spacing(3),
   },
   nested: {
-    paddingLeft: theme.spacing(4)
+    paddingLeft: theme.spacing(4),
   },
   table: {
     minWidth: 650,
-    marginRight: "auto"
+    marginRight: "auto",
   },
   tableContainer: {
     width: "50rem",
-    marginRight: "auto"
+    marginRight: "auto",
   },
   expandIcons: {
-    color: "white"
-  }
+    color: "white",
+  },
 }));
 
 export default function Header(props) {
@@ -193,6 +193,14 @@ export default function Header(props) {
   const [value, setValue] = useState(0);
   const [openMenu, setOpenMenu] = useState(false);
 
+  const history = useHistory();
+
+  const handleClick = () => {
+    setOpenDrawer(false);
+    history.push("/admin/login");
+    window.location.reload(false);
+  };
+
   const routes = [
     { name: "Inbox", link: "/admin/inbox", value: 0, icon: <MailIcon /> },
     { name: "Profile", link: "/admin/profile", value: 1, icon: <FaceIcon /> },
@@ -201,30 +209,30 @@ export default function Header(props) {
       name: "Gallery",
       link: "/admin/gallery",
       value: 3,
-      icon: <PhotoLibraryIcon />
+      icon: <PhotoLibraryIcon />,
     },
     {
       name: "Resources",
       link: "/admin/resources",
       value: 4,
-      icon: <LibraryBooksIcon />
+      icon: <LibraryBooksIcon />,
     },
     {
       name: "Analytics",
       link: "/admin/analytics",
       value: 5,
-      icon: <AssessmentIcon />
+      icon: <AssessmentIcon />,
     },
     {
       name: "Settings",
       link: "/admin/settings",
       value: 6,
-      icon: <SettingsIcon />
-    }
+      icon: <SettingsIcon />,
+    },
   ];
 
   useEffect(() => {
-    routes.forEach(route => {
+    routes.forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
           if (value !== route.value) {
@@ -257,7 +265,7 @@ export default function Header(props) {
                   color: theme.palette.primary.main,
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               ></TableCell>
@@ -266,7 +274,7 @@ export default function Header(props) {
                   color: "white",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -277,7 +285,7 @@ export default function Header(props) {
                   color: "white",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -288,7 +296,7 @@ export default function Header(props) {
                   color: "white",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -299,7 +307,7 @@ export default function Header(props) {
                   color: "white",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -314,7 +322,7 @@ export default function Header(props) {
                   color: "white",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1rem"
+                  fontSize: "1rem",
                 }}
                 align="right"
               >
@@ -325,7 +333,7 @@ export default function Header(props) {
                   color: "green",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -336,7 +344,7 @@ export default function Header(props) {
                   color: "green",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -347,7 +355,7 @@ export default function Header(props) {
                   color: "green",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -358,7 +366,7 @@ export default function Header(props) {
                   color: "green",
                   borderBottom: "none",
                   fontWeight: "700",
-                  fontSize: "1.2rem"
+                  fontSize: "1.2rem",
                 }}
                 align="center"
               >
@@ -379,7 +387,7 @@ export default function Header(props) {
       className={classes.permDrawer}
       variant="permanent"
       classes={{
-        paper: classes.permDrawerPaper
+        paper: classes.permDrawerPaper,
       }}
       anchor="left"
     >
@@ -394,7 +402,7 @@ export default function Header(props) {
       </Button>
       <Divider />
       <List className={classes.drawerList} disablePadding>
-        {routes.map(route =>
+        {routes.map((route) =>
           route.name !== "Resources" ? (
             <ListItem
               className={classes.drawerItem}
@@ -483,14 +491,11 @@ export default function Header(props) {
           className={classes.drawerItem}
           divider
           button
-          // onClick={props.history.push("/admin/login")}
-          onClick={() => setOpenDrawer(false)}
-          component={Link}
-          to="/admin/login"
+          onClick={handleClick}
         >
-            <ListItemText className={classes.drawerItemText} disableTypography>
-              <ExitToAppIcon /> Logout
-            </ListItemText>
+          <ListItemText className={classes.drawerItemText} disableTypography>
+            <ExitToAppIcon /> Logout
+          </ListItemText>
         </ListItem>
       </List>
     </Drawer>
@@ -524,99 +529,97 @@ export default function Header(props) {
         </Button>
         <Divider />
         <List className={classes.drawerList} disablePadding>
-        {routes.map(route =>
-          route.name !== "Resources" ? (
-            <ListItem
-              className={classes.drawerItem}
-              divider
-              button
-              onClick={() => {
-                setOpenDrawer(false);
-                setValue(route.value);
-              }}
-              component={Link}
-              to={route.link}
-              selected={value === route.value}
-            >
-              <ListItemText
-                className={classes.drawerItemText}
-                disableTypography
-              >
-                {route.icon} {route.name}
-              </ListItemText>
-            </ListItem>
-          ) : (
-            <Fragment>
-              {" "}
+          {routes.map((route) =>
+            route.name !== "Resources" ? (
               <ListItem
                 className={classes.drawerItem}
                 divider
                 button
                 onClick={() => {
-                  setValue(4);
+                  setOpenDrawer(false);
+                  setValue(route.value);
                 }}
-                selected={value === 4}
+                component={Link}
+                to={route.link}
+                selected={value === route.value}
               >
                 <ListItemText
                   className={classes.drawerItemText}
                   disableTypography
                 >
-                  <LibraryBooksIcon /> Resources
+                  {route.icon} {route.name}
                 </ListItemText>
-                {openMenu ? (
-                  <ExpandLess
-                    className={classes.expandIcons}
-                    onClick={() => setOpenMenu(false)}
-                  />
-                ) : (
-                  <ExpandMore
-                    className={classes.expandIcons}
-                    onClick={() => setOpenMenu(true)}
-                  />
-                )}
               </ListItem>
-              <Collapse in={openMenu} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItem
-                    button
-                    onClick={() => setOpenDrawer(false)}
-                    className={classes.nested}
-                    component={Link}
-                    to="/admin/stones"
+            ) : (
+              <Fragment>
+                {" "}
+                <ListItem
+                  className={classes.drawerItem}
+                  divider
+                  button
+                  onClick={() => {
+                    setValue(4);
+                  }}
+                  selected={value === 4}
+                >
+                  <ListItemText
+                    className={classes.drawerItemText}
+                    disableTypography
                   >
-                    <ListItemText
-                      className={classes.drawerItemText}
-                      disableTypography
+                    <LibraryBooksIcon /> Resources
+                  </ListItemText>
+                  {openMenu ? (
+                    <ExpandLess
+                      className={classes.expandIcons}
+                      onClick={() => setOpenMenu(false)}
+                    />
+                  ) : (
+                    <ExpandMore
+                      className={classes.expandIcons}
+                      onClick={() => setOpenMenu(true)}
+                    />
+                  )}
+                </ListItem>
+                <Collapse in={openMenu} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    <ListItem
+                      button
+                      onClick={() => setOpenDrawer(false)}
+                      className={classes.nested}
+                      component={Link}
+                      to="/admin/stones"
                     >
-                      <FlareOutlinedIcon /> Stones
-                    </ListItemText>
-                  </ListItem>
-                  <ListItem
-                    button
-                    onClick={() => setOpenDrawer(false)}
-                    className={classes.nested}
-                    component={Link}
-                    to="/admin/notes"
-                  >
-                    <ListItemText
-                      className={classes.drawerItemText}
-                      disableTypography
+                      <ListItemText
+                        className={classes.drawerItemText}
+                        disableTypography
+                      >
+                        <FlareOutlinedIcon /> Stones
+                      </ListItemText>
+                    </ListItem>
+                    <ListItem
+                      button
+                      onClick={() => setOpenDrawer(false)}
+                      className={classes.nested}
+                      component={Link}
+                      to="/admin/notes"
                     >
-                      <CreateOutlinedIcon /> Notes
-                    </ListItemText>
-                  </ListItem>
-                </List>
-              </Collapse>
-            </Fragment>
-          )
-        )}
+                      <ListItemText
+                        className={classes.drawerItemText}
+                        disableTypography
+                      >
+                        <CreateOutlinedIcon /> Notes
+                      </ListItemText>
+                    </ListItem>
+                  </List>
+                </Collapse>
+              </Fragment>
+            )
+          )}
           <ListItem
             className={classes.drawerItem}
             divider
             button
-            onClick={() => setOpenDrawer(false)}
-            component={Link}
-            to="/admin/login"
+            onClick={handleClick}
           >
             <ListItemText className={classes.drawerItemText} disableTypography>
               <ExitToAppIcon /> Logout
