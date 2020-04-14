@@ -426,8 +426,6 @@ export default function Header(props) {
                   setOpenDrawer(false);
                   setValue(4);
                 }}
-                component={Link}
-                to="/admin/resources"
                 selected={value === 4}
               >
                 <ListItemText
@@ -450,8 +448,12 @@ export default function Header(props) {
               </ListItem>
               <Collapse in={openMenu} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItem button className={classes.nested} component={Link}
-                to="/admin/stones">
+                  <ListItem
+                    button
+                    className={classes.nested}
+                    component={Link}
+                    to="/admin/stones"
+                  >
                     <ListItemText
                       className={classes.drawerItemText}
                       disableTypography
@@ -459,8 +461,12 @@ export default function Header(props) {
                       <FlareOutlinedIcon /> Stones
                     </ListItemText>
                   </ListItem>
-                  <ListItem button className={classes.nested} component={Link}
-                to="/admin/notes">
+                  <ListItem
+                    button
+                    className={classes.nested}
+                    component={Link}
+                    to="/admin/notes"
+                  >
                     <ListItemText
                       className={classes.drawerItemText}
                       disableTypography
@@ -477,13 +483,14 @@ export default function Header(props) {
           className={classes.drawerItem}
           divider
           button
+          // onClick={props.history.push("/admin/login")}
           onClick={() => setOpenDrawer(false)}
           component={Link}
           to="/admin/login"
         >
-          <ListItemText className={classes.drawerItemText} disableTypography>
-            <ExitToAppIcon /> Logout
-          </ListItemText>
+            <ListItemText className={classes.drawerItemText} disableTypography>
+              <ExitToAppIcon /> Logout
+            </ListItemText>
         </ListItem>
       </List>
     </Drawer>
@@ -517,7 +524,8 @@ export default function Header(props) {
         </Button>
         <Divider />
         <List className={classes.drawerList} disablePadding>
-          {routes.map(route => (
+        {routes.map(route =>
+          route.name !== "Resources" ? (
             <ListItem
               className={classes.drawerItem}
               divider
@@ -537,7 +545,71 @@ export default function Header(props) {
                 {route.icon} {route.name}
               </ListItemText>
             </ListItem>
-          ))}
+          ) : (
+            <Fragment>
+              {" "}
+              <ListItem
+                className={classes.drawerItem}
+                divider
+                button
+                onClick={() => {
+                  setValue(4);
+                }}
+                selected={value === 4}
+              >
+                <ListItemText
+                  className={classes.drawerItemText}
+                  disableTypography
+                >
+                  <LibraryBooksIcon /> Resources
+                </ListItemText>
+                {openMenu ? (
+                  <ExpandLess
+                    className={classes.expandIcons}
+                    onClick={() => setOpenMenu(false)}
+                  />
+                ) : (
+                  <ExpandMore
+                    className={classes.expandIcons}
+                    onClick={() => setOpenMenu(true)}
+                  />
+                )}
+              </ListItem>
+              <Collapse in={openMenu} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItem
+                    button
+                    onClick={() => setOpenDrawer(false)}
+                    className={classes.nested}
+                    component={Link}
+                    to="/admin/stones"
+                  >
+                    <ListItemText
+                      className={classes.drawerItemText}
+                      disableTypography
+                    >
+                      <FlareOutlinedIcon /> Stones
+                    </ListItemText>
+                  </ListItem>
+                  <ListItem
+                    button
+                    onClick={() => setOpenDrawer(false)}
+                    className={classes.nested}
+                    component={Link}
+                    to="/admin/notes"
+                  >
+                    <ListItemText
+                      className={classes.drawerItemText}
+                      disableTypography
+                    >
+                      <CreateOutlinedIcon /> Notes
+                    </ListItemText>
+                  </ListItem>
+                </List>
+              </Collapse>
+            </Fragment>
+          )
+        )}
           <ListItem
             className={classes.drawerItem}
             divider

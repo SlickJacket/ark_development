@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import Header from "./header/Header";
 import Inbox from "./pages/inbox/Inbox";
 import Profile from "./pages/profile/Profile";
@@ -19,30 +19,71 @@ import { ThemeProvider } from "@material-ui/styles";
 import theme from "./Theme";
 
 export default function AdminDashboard() {
-
-    const renderHeader = () => {
-        if (window.location.href.indexOf("signup") === -1 && window.location.href.indexOf("login") === -1 ) {
-          return <Header/>;
-        }
-      };
-
+  const renderHeader = () => {
+    if (
+      window.location.href.indexOf("signup") === -1 &&
+      window.location.href.indexOf("login") === -1
+    ) {
+      return <Header />;
+    } else {
+      return <Header style={{ display: "none" }} />;
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
       {renderHeader()}
       <Switch>
-        <Route exact path="/admin/login" component={Login} />
-        <Route exact path="/admin/signup" component={Signup} />
-        <Route exact path="/admin/inbox" component={Inbox} />
-        <Route exact path="/admin/profile" component={Profile} />
-        <Route exact path="/admin/videos" component={Videos} />
-        <Route exact path="/admin/gallery" component={Gallery} />
-        <Route exact path="/admin/resources" component={Resources} />
-        <Route exact path="/admin/stones" component={Stones} />
-        <Route exact path="/admin/notes" component={Notes} />
-        <Route exact path="/admin/metal-calculator" component={Resources} />
-        <Route exact path="/admin/analytics" component={Analytics} />
-        <Route exact path="/admin/settings" component={Settings} />
+        <Route
+          exact
+          path={"/admin/inbox"}
+          render={routerProps => <Inbox {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/profile"}
+          render={routerProps => <Profile {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/videos"}
+          render={routerProps => <Videos {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/gallery"}
+          render={routerProps => <Gallery {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/resources"}
+          render={routerProps => <Resources {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/stones"}
+          render={routerProps => <Stones {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/notes"}
+          render={routerProps => <Notes {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/metal-calculator"}
+          render={routerProps => <Resources {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/analytics"}
+          render={routerProps => <Analytics {...routerProps} />}
+        />
+        <Route
+          exact
+          path={"/admin/settings"}
+          render={routerProps => <Settings {...routerProps} />}
+        />
       </Switch>
     </ThemeProvider>
   );
