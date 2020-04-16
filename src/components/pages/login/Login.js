@@ -4,13 +4,14 @@ import { makeStyles, getThemeProps } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import diamondBackground from "../../../assets/diamondsBackground2.jpg"
 
 import "../../App.css";
 
 const useStyles = makeStyles(theme => ({
   signupPageContainer: {
     backgroundImage:
-      "url('https://russiabusinesstoday.com/wp-content/uploads/2018/07/diamonds.jpg')",
+      `url(${diamondBackground})`,
     backgroundPosition: "center",
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
